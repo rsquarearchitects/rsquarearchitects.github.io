@@ -1,109 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PDF Loader (GitHub Pages)</title>
+  <meta charset="utf-8">
+  <title>My PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    body{margin:0;display:flex;flex-direction:column;height:100vh}
-    header{padding:12px 16px;background:#0f172a;color:#fff;display:flex;gap:12px;align-items:center}
-    main{flex:1;display:flex;flex-direction:column}
-    .controls{padding:12px;display:flex;gap:8px;align-items:center;background:#f8fafc}
-    input[type=text]{padding:8px;border:1px solid #cbd5e1;border-radius:6px;min-width:280px}
-    button{padding:8px 12px;border-radius:6px;border:0;background:#10b981;color:white;cursor:pointer}
-    iframe{flex:1;border:0;width:100%}
-    .hint{font-size:13px;color:#374151}
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <strong>PDF Loader for GitHub Pages</strong>
-    <span class="hint">Automatically uses <code>USERNAME.github.io</code> when available — replace USERNAME with your GitHub username</span>
-  </header>
-
-  <div class="controls">
-    <label class="hint">PDF path (inside your repo):</label>
-    <input id="pdfPath" type="text" value="document.pdf" />
-    <button id="load">Load PDF</button>
-    <button id="openRaw">Open raw URL</button>
-    <div style="margin-left:12px" class="hint">Detected host: <span id="host"></span></div>
-  </div>
-
-  <main>
-    <!-- PDF will be shown here -->
-    <iframe id="pdfFrame" title="PDF viewer"></iframe>
-  </main>
-
-  <script>
-    // This single-file site assumes you host it on GitHub Pages.
-    // For a *user page* (https://USERNAME.github.io), place your PDF at the repo root (e.g. document.pdf)
-    // and this page will try to load it automatically using the raw.githubusercontent.com URL.
-
-    const hostEl = document.getElementById('host');
-    const pdfPathInput = document.getElementById('pdfPath');
-    const loadBtn = document.getElementById('load');
-    const openRawBtn = document.getElementById('openRaw');
-    const iframe = document.getElementById('pdfFrame');
-
-    const hostname = location.hostname || '';
-    hostEl.textContent = hostname || '(unknown)';
-
-    function detectUsername() {
-      // Try to extract the GitHub username from hostname like 'alice.github.io'
-      const parts = hostname.split('.');
-      if (parts.length >= 3 && parts.slice(-2).join('.') === 'github.io') {
-        return parts.slice(0, parts.length - 2).join('.');
-      }
-      // fallback: maybe user opened index.html locally or on a project page
-      return null;
-    }
-
-    function buildRawUrl(username, pdfPath) {
-      // For a user page the canonical repo name is `${username}.github.io`
-      // Raw URL pattern: https://raw.githubusercontent.com/USERNAME/REPO/BRANCH/PATH
-      const repo = `${username}.github.io`;
-      const branch = 'main'; // change to 'master' if your repo uses master
-      // ensure no leading slash
-      pdfPath = pdfPath.replace(/^\/+/, '');
-      return `https://raw.githubusercontent.com/${username}/${repo}/${branch}/${pdfPath}`;
-    }
-
-    function tryLoad(pdfUrl) {
-      // Set the iframe src — browsers will display the PDF if allowed by the server
-      iframe.src = pdfUrl;
-    }
-
-    loadBtn.addEventListener('click', () => {
-      const pdfPath = pdfPathInput.value.trim() || 'document.pdf';
-      const username = detectUsername();
-      if (!username) {
-        // If we can't detect username, try relative path first (works if PDF is deployed alongside this page)
-        tryLoad(pdfPath.startsWith('http') ? pdfPath : `/${pdfPath}`);
-        return;
-      }
-
-      const candidate = buildRawUrl(username, pdfPath);
-      tryLoad(candidate);
-    });
-
-    openRawBtn.addEventListener('click', () => {
-      const pdfPath = pdfPathInput.value.trim() || 'document.pdf';
-      const username = detectUsername();
-      if (!username) {
-        const url = pdfPath.startsWith('http') ? pdfPath : `/${pdfPath}`;
-        window.open(url, '_blank');
-        return;
-      }
-      const candidate = buildRawUrl(username, pdfPath);
-      window.open(candidate, '_blank');
-    });
-
-    // Auto-load on page open
-    (function autoLoad(){
-      // small delay so host is visible quickly
-      setTimeout(() => loadBtn.click(), 300);
-    })();
-  </script>
+  <!-- Replace document.pdf with your actual file name -->
+  <iframe src="Lease.pdf"></iframe>
 </body>
 </html>
