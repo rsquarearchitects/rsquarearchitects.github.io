@@ -25,10 +25,17 @@
 <body class="bg-gray-900 text-white h-screen w-screen flex flex-col">
 
     <!--
-      This is a fixed header for the page. It's optional but good practice.
-      You can change this to your name or the name of your project.
+      This is a sticky header at the top of the page. It now includes a logo
+      and a title, which are aligned using a flexbox.
     -->
-    <header class="p-4 md:p-6 bg-gray-800 shadow-xl">
+    <header class="sticky top-0 z-50 p-4 md:p-6 bg-gray-800 shadow-xl flex items-center justify-between">
+        <!-- Logo - The src attribute has been updated with the logo URL you provided -->
+        <img
+            src="https://i.postimg.cc/Pq9Jfn1j/letter-haid-1.jpg"
+            alt="Letter Haid Logo"
+            class="h-8 sm:h-10 rounded-lg"
+        >
+        <!-- Title - Replace with your company name or project title -->
         <h1 class="text-xl md:text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
             R Square & Associates
         </h1>
